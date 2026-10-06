@@ -3,25 +3,76 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
-  gap: 24px;
-}
-
-.cards > ul > li {
-  border: 1px solid #dadada;
-  background-color: var(--background-color);
-}
-
-.cards .cards-card-body {
-  margin: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 48px 32px;
 }
 
 .cards .cards-card-image {
   line-height: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
 }
 
 .cards > ul > li img {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.cards > ul > li:hover img {
+  transform: scale(1.03);
+}
+
+.cards .cards-card-body {
+  margin-top: 24px;
+}
+
+.cards .cards-card-body > :first-child {
+  margin-top: 0;
+}
+
+.cards .cards-card-body h3 {
+  font-size: var(--heading-font-size-m);
+}
+
+.cards .cards-card-body p {
+  margin-top: 8px;
+  color: var(--muted-color);
+  font-size: var(--body-font-size-s);
+}
+
+/* text-only cards read as a row of short statements with a rule above */
+.cards > ul > li.cards-card-text-only {
+  border-top: 1px solid var(--text-color);
+}
+
+/* compact: square images in a tighter grid, for secondary card rows */
+.cards.compact > ul {
+  grid-template-columns: 1fr;
+  gap: 40px 24px;
+}
+
+@media (width >= 600px) {
+  .cards.compact > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 900px) {
+  .cards.compact > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.cards.compact > ul > li img {
+  aspect-ratio: 1;
+}
+
+.cards.compact .cards-card-body {
+  margin-top: 16px;
+}
+
+.cards.compact .cards-card-body h3 {
+  font-size: var(--heading-font-size-s);
 }

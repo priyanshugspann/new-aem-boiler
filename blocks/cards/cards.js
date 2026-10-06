@@ -10,8 +10,13 @@ export default function decorate(block) {
       if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-card-image';
       else div.className = 'cards-card-body';
     });
+    if (!li.querySelector('.cards-card-image')) li.classList.add('cards-card-text-only');
     ul.append(li);
   });
-  ul.querySelectorAll('picture > img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
+  // only same-origin images can use the media optimization query params
+  ul.querySelectorAll('picture > img').forEach((img) => {
+    if (new URL(img.src, window.location.href).origin !== window.location.origin) return;
+    img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]));
+  });
   block.replaceChildren(ul);
 }

@@ -10,6 +10,9 @@ import {
   loadSections,
   loadCSS,
   buildBlock,
+  readBlockConfig,
+  toClassName,
+  toCamelCase,
 } from './aem.js';
 
 if (window.trustedTypes && window.trustedTypes.createPolicy) {
@@ -70,6 +73,34 @@ function buildWidgetAutoBlocks(main) {
     } else {
       link.replaceWith(widgetBlock);
     }
+  });
+}
+
+/**
+ * Applies section and page metadata tables that reach the browser unprocessed
+ * (e.g. local previews of imported content). Published markup arrives already
+ * converted, in which case there is nothing to do here.
+ * @param {Element} main The container element
+ */
+function applyUnprocessedMetadata(main) {
+  main.querySelectorAll(':scope > div > div.section-metadata').forEach((sectionMeta) => {
+    const section = sectionMeta.parentElement;
+    const meta = readBlockConfig(sectionMeta);
+    Object.entries(meta).forEach(([key, value]) => {
+      if (key === 'style') {
+        value.split(',').map((v) => toClassName(v.trim())).filter(Boolean)
+          .forEach((style) => section.classList.add(style));
+      } else {
+        section.dataset[toCamelCase(key)] = value;
+      }
+    });
+    sectionMeta.remove();
+  });
+
+  main.querySelectorAll(':scope > div > div.metadata').forEach((pageMeta) => {
+    const { title } = readBlockConfig(pageMeta);
+    if (title) document.title = title;
+    pageMeta.remove();
   });
 }
 
@@ -148,6 +179,7 @@ function decorateButtons(main) {
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
+  applyUnprocessedMetadata(main);
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
