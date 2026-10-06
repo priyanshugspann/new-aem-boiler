@@ -1,6 +1,7 @@
 /* header and nav layout */
 header .nav-wrapper {
   background-color: var(--background-color);
+  border-bottom: 1px solid var(--border-color);
   width: 100%;
   z-index: 2;
   position: fixed;
@@ -15,7 +16,7 @@ header nav {
   align-items: center;
   gap: 0 24px;
   margin: auto;
-  max-width: 1248px;
+  max-width: 1296px;
   height: var(--nav-height);
   padding: 0 24px;
   font-family: var(--body-font-family);
@@ -38,9 +39,9 @@ header nav[aria-expanded='true'] {
   header nav {
     display: flex;
     justify-content: space-between;
-    gap: 0 32px;
-    max-width: 1264px;
-    padding: 0 32px;
+    gap: 0 48px;
+    max-width: 1296px;
+    padding: 0 48px;
   }
 }
 
@@ -51,6 +52,11 @@ header nav p {
 
 header nav a:any-link {
   color: currentcolor;
+  text-decoration: none;
+}
+
+header nav a:any-link:hover {
+  color: var(--accent-color);
 }
 
 /* hamburger */
@@ -138,8 +144,10 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
 header .nav-brand {
   grid-area: brand;
   flex-basis: 128px;
-  font-size: var(--heading-font-size-s);
-  font-weight: 700;
+  font-family: var(--heading-font-family);
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
   line-height: 1;
 }
 
@@ -170,6 +178,7 @@ header nav .nav-sections ul {
 
 header nav .nav-sections ul > li {
   font-weight: 500;
+  padding: 12px 0;
 }
 
 header nav .nav-sections .nav-drop > button {
@@ -225,8 +234,13 @@ header nav .nav-sections .nav-drop > button[aria-expanded='false'] + ul {
 
   header nav .nav-sections ul {
     display: flex;
-    gap: 24px;
+    justify-content: flex-end;
+    gap: 40px;
     margin: 0;
+  }
+
+  header nav .nav-sections ul > li {
+    padding: 0;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li {
@@ -270,4 +284,17 @@ header nav .nav-sections .nav-drop > button[aria-expanded='false'] + ul {
 /* tools */
 header nav .nav-tools {
   grid-area: tools;
+}
+
+header nav .nav-tools p.button-wrapper {
+  margin: 0;
+}
+
+header nav .nav-tools a.button:any-link {
+  padding: 0.75em 1.4em;
+  font-size: 12px;
+}
+
+header nav .nav-tools a.button.primary:hover {
+  color: var(--background-color);
 }
