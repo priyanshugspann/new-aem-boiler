@@ -1,0 +1,6 @@
+http://localhost:8765/index.html
+http://localhost:8765/menu.html
+http://localhost:8765/about.html
+http://localhost:8765/visit.html
+http://localhost:8765/nav.html
+http://localhost:8765/footer.html

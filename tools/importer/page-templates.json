@@ -1,0 +1,42 @@
+{
+  "templates": [
+    {
+      "name": "coffee",
+      "description": "Stillwater Coffee pages (home, menu, about, visit) plus nav and footer fragments",
+      "urls": [
+        "http://localhost:8765/index.html",
+        "http://localhost:8765/menu.html",
+        "http://localhost:8765/about.html",
+        "http://localhost:8765/visit.html",
+        "http://localhost:8765/nav.html",
+        "http://localhost:8765/footer.html"
+      ],
+      "blocks": [
+        {
+          "name": "hero",
+          "instances": [
+            ".hero"
+          ]
+        },
+        {
+          "name": "cards",
+          "instances": [
+            ".cards"
+          ]
+        },
+        {
+          "name": "columns",
+          "instances": [
+            ".columns"
+          ]
+        },
+        {
+          "name": "menu",
+          "instances": [
+            ".menu"
+          ]
+        }
+      ]
+    }
+  ]
+}
