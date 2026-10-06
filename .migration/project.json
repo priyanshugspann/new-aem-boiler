@@ -1,0 +1,9 @@
+{
+  "sites": {
+    "new-aem-boiler": {
+      "previewOrg": "priyanshugspann",
+      "previewSite": "new-aem-boiler",
+      "contentHostUrl": "https://content.da.live/priyanshugspann/new-aem-boiler/"
+    }
+  }
+}
